@@ -1,6 +1,7 @@
-<nav class="navbar" role="navigation" aria-label="main navigation">
+<header>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-        <a class="navbar-item" href="#">
+        <a routerLink="/" class="navbar-item" aria-label="Home">
             <span class="icon has-text-info is-large">
                 <i class="fas fa-2x fa-envelope"></i>
             </span>
@@ -55,10 +56,10 @@
         <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
-                    <a class="button is-warning">
+                    <a routerLink="/signup" class="button is-warning">
                         <strong>Sign up</strong>
                     </a>
-                    <a class="button is-light">
+                    <a routerLink="/login" class="button is-light">
                         Log in
                     </a>
                 </div>
@@ -66,3 +67,4 @@
         </div>
     </div>
 </nav>
+</header>
