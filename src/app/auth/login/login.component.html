@@ -1,0 +1,27 @@
+<section class="section is-large">
+    <div class="container">
+        <div class="columns is-vcentered is-centered">
+            <div class="column is-narrow">
+                <h2 class="title has-text-centered">Login</h2>
+                <form class="box" [formGroup]="loginForm" (ngSubmit)="login()">
+                    <div class="field">
+                      <label class="label">Email</label>
+                      <div class="control">
+                        <input class="input" id="email" formControlName="email" type="email">
+                      </div>
+                      <p class="help is-danger" *ngIf="email.invalid && email.touched">This email is invalid</p>
+                    </div>
+                  
+                    <div class="field">
+                      <label class="label">Password</label>
+                      <div class="control">
+                        <input class="input" id="password" formControlName="password" type="password">
+                      </div>
+                    </div>
+                  
+                    <button class="button is-warning">Login</button>
+                  </form>    
+            </div>
+        </div>
+    </div>
+</section>
