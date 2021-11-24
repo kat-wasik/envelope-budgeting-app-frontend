@@ -2,6 +2,7 @@ import { AuthService } from './../shared/auth.service';
 import { SignupRequestPayload } from './signup-request.payload';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -11,12 +12,15 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class SignupComponent implements OnInit {
   signupRequestPayload: SignupRequestPayload;
   signupForm!: FormGroup;
+  isShowingRegistrationErrorNotification: boolean;
 
-  constructor(private authService: AuthService ) { 
+  constructor(private authService: AuthService, private router: Router ) { 
     this.signupRequestPayload = {
       username: '',
       password: ''
     };
+
+    this.isShowingRegistrationErrorNotification = false;
   }
 
   ngOnInit(): void {
@@ -35,8 +39,14 @@ export class SignupComponent implements OnInit {
     this.signupRequestPayload.password = this.password.value;
 
     this.authService.signup(this.signupRequestPayload)
-      .subscribe(data => {
-        console.log(data);
+      .subscribe(() => {
+        this.router.navigate(['/login'], { queryParams: { registered: 'true' } });
+      }, () => {
+        this.isShowingRegistrationErrorNotification = true;
       });
+  }
+
+  closeNotification() {
+    this.isShowingRegistrationErrorNotification = false;
   }
 }

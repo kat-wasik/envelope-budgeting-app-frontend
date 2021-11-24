@@ -23,5 +23,17 @@
                   </form>    
             </div>
         </div>
+        <div class="columns is-vcentered is-centered">
+          <div class="notification is-success" *ngIf="isShowingRegistrationSuccessNotification">
+            <button class="delete" (click)="closeSuccessNotification()"></button>
+            Registration successful! You may now log in
+          </div>
+        </div>
+        <div class="columns is-vcentered is-centered">
+          <div class="notification is-danger" *ngIf="isShowingLoginErrorNotification">
+            <button class="delete" (click)="closeErrorNotification()"></button>
+            Login failed! Check your email and password and try again
+          </div>
+        </div>
     </div>
 </section>

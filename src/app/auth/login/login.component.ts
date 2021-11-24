@@ -2,6 +2,7 @@ import { LoginRequestPayload } from './login-request.payload';
 import { AuthService } from './../shared/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,12 +12,17 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   loginRequestPayload: LoginRequestPayload;
   loginForm!: FormGroup;
+  isShowingRegistrationSuccessNotification: boolean;
+  isShowingLoginErrorNotification: boolean;
 
-  constructor(private authService: AuthService ) { 
+  constructor(private authService: AuthService, private activatedRoute: ActivatedRoute, private router: Router) { 
     this.loginRequestPayload = {
       username: '',
       password: ''
     };
+
+    this.isShowingRegistrationSuccessNotification = false;
+    this.isShowingLoginErrorNotification = false;
   }
 
   ngOnInit(): void {
@@ -24,6 +30,13 @@ export class LoginComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required)
     });
+
+    this.activatedRoute.queryParams
+      .subscribe(params => {
+        if (params.registered !== undefined && params.registered === 'true') {
+          this.isShowingRegistrationSuccessNotification = true;
+        }
+      });
   }
 
   get email() { return this.loginForm.get('email')!; }
@@ -36,7 +49,19 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(this.loginRequestPayload)
       .subscribe(data => {
-        console.log(data);
+        if (data) {
+          this.router.navigateByUrl('/accounts');
+        } else {
+          this.isShowingLoginErrorNotification = true;
+        }
       });
+  }
+
+  closeSuccessNotification() {
+    this.isShowingRegistrationSuccessNotification = false;
+  }
+
+  closeErrorNotification() {
+    this.isShowingLoginErrorNotification = false;
   }
 }
