@@ -6,6 +6,8 @@ import { LoginRequestPayload } from '../login/login-request.payload';
 import { LoginResponse } from '../login/login-response.payload';
 import { LocalStorageService } from 'ngx-webstorage';
 import { map, tap } from 'rxjs/operators';
+import { Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +17,9 @@ export class AuthService {
     refreshToken: this.getRefreshToken(),
     username: this.getUserName()
   }
+
+  @Output() getLoggedIn: EventEmitter<any> = new EventEmitter();
+  @Output() getLoggedOut: EventEmitter<any> = new EventEmitter();
 
   constructor(private httpClient: HttpClient, private localStorage: LocalStorageService) { }
 
@@ -29,6 +34,7 @@ export class AuthService {
         this.localStorage.store('username', data.username);
         this.localStorage.store('refreshToken', data.refreshToken);
         this.localStorage.store('expiresAt', data.expiresAt);
+        this.getLoggedIn.emit(null);
         return true;
       }));
   }
@@ -46,6 +52,7 @@ export class AuthService {
     this.localStorage.clear('username');
     this.localStorage.clear('refreshToken');
     this.localStorage.clear('expiresAt');
+    this.getLoggedOut.emit(null);
   }
 
   refreshToken() {

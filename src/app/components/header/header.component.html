@@ -35,13 +35,13 @@
         <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
-                    <a routerLink="/signup" class="button is-warning">
+                    <a *ngIf="!isLoggedIn" routerLink="/signup" class="button is-warning">
                         <strong>Sign up</strong>
                     </a>
-                    <a routerLink="/login" class="button is-light">
+                    <a *ngIf="!isLoggedIn" routerLink="/login" class="button is-light">
                         Log in
                     </a>
-                    <a (click)="logout()" class="button is-light">
+                    <a *ngIf="isLoggedIn" (click)="logout()" class="button is-light">
                         Log out
                     </a>
                 </div>
