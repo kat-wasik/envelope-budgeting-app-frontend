@@ -13,4 +13,8 @@ export class AccountService {
   getAllAccounts(): Observable<Array<AccountModel>> {
     return this.http.get<Array<AccountModel>>('http://localhost:8080/api/account');
   }
+
+  delete(account: AccountModel): Observable<any> {
+    return this.http.delete('http://localhost:8080/api/account/' + account.id);
+  }
 }

@@ -14,11 +14,14 @@ export class AccountsComponent implements OnInit {
   constructor(private accountService: AccountService) {
     this.accountService.getAllAccounts().subscribe(accounts => {
       this.accounts$ = accounts;
-      console.log(this.accounts$)
     })
    }
 
   ngOnInit(): void {
   }
 
+  delete(account: AccountModel) {
+    this.accountService.delete(account).subscribe();
+    window.location.reload();
+    }
 }
