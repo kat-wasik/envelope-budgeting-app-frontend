@@ -1,6 +1,7 @@
 import { AccountService } from './../../shared/account.service';
 import { Component, OnInit } from '@angular/core';
-import { AccountModel } from 'src/app/shared/account-model';
+import { Router } from '@angular/router';
+import { AccountPayload } from 'src/app/shared/account-payload';
 
 @Component({
   selector: 'app-accounts',
@@ -9,9 +10,9 @@ import { AccountModel } from 'src/app/shared/account-model';
 })
 export class AccountsComponent implements OnInit {
 
-  accounts$: Array<AccountModel> = [];
+  accounts$: Array<AccountPayload> = [];
 
-  constructor(private accountService: AccountService) {
+  constructor(private accountService: AccountService, private router: Router) {
     this.accountService.getAllAccounts().subscribe(accounts => {
       this.accounts$ = accounts;
     })
@@ -20,8 +21,16 @@ export class AccountsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  delete(account: AccountModel) {
+  delete(account: AccountPayload) {
     this.accountService.delete(account).subscribe();
     window.location.reload();
     }
+
+  goToTransactions(accountId: number | undefined) {
+    this.router.navigate(['transactions'], { queryParams: { accountId: accountId } });
+  }
+
+  editAccount(id: number | undefined) {
+    this.router.navigate(['accounts/edit'], { queryParams: { id: id}})
+  }
 }

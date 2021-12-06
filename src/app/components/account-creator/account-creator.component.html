@@ -1,0 +1,32 @@
+<section class="section is-medium">
+  <div class="container">
+    <div class="columns is-vcentered is-centered">
+      <div class="column is-narrow">
+        <h2 class="title has-text-centered">New account</h2>
+        <form class="box" [formGroup]="accountCreatorForm" (ngSubmit)="create()">
+          <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+              <input class="input" id="name" formControlName="name" type="text">
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Balance</label>
+            <div class="control">
+              <input class="input" id="balance" formControlName="balance" type="number">
+            </div>
+          </div>
+          <div class="field is-grouped">
+            <div class="control">
+              <button class="button is-success" type="submit">Create</button>
+            </div>
+            <div class="control">
+              <button class="button is-success is-outlined" type="button" (click)="cancel()">Cancel</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
