@@ -12,25 +12,14 @@
                 <i class="fas fa-2x fa-money-bill-alt"></i>
             </span>
         </a>
-
-        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <a (click)="toggleMenu()" [class.is-active]="isActive" role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
-        </a>
+          </a>
     </div>
 
-    <div class="navbar-menu">
-        <div class="navbar-start">
-            <a routerLink="/" class="navbar-item">
-                Home
-            </a>
-
-            <a routerLink="/accounts" class="navbar-item">
-                Accounts
-            </a>
-
-        </div>
+    <div class="navbar-menu" [class.is-active]="isActive">
 
         <div class="navbar-end">
             <div class="navbar-item">

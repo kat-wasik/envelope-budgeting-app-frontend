@@ -1,5 +1,5 @@
 import { AuthService } from './../../auth/shared/auth.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   isLoggedIn!: boolean;
+  isActive: boolean = false;
 
   constructor(private authService: AuthService, private router: Router) {
     this.isLoggedIn = authService.isLoggedIn();
@@ -24,5 +25,9 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('').then(() => {
       window.location.reload();
     })
+  }
+
+  toggleMenu() {
+    this.isActive = !this.isActive;
   }
 }
