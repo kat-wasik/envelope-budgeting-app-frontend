@@ -1,6 +1,6 @@
 # Intro
 
-This repository represents frontend part of a project that was intended as an envelope budgeting app. For details on the project as a whole please see [envelope-budgeting-app-microservices](https://github.com/kat-wasik/envelope-budgeting-app-frontend) repository intro.
+This repository represents frontend part of a project that was intended as an envelope budgeting app. For details on the project as a whole please see [envelope-budgeting-app-microservices](https://github.com/kat-wasik/envelope-budgeting-app-microservices) repository intro.
 
 # Getting Started
 
