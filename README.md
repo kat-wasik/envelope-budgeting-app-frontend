@@ -11,5 +11,5 @@ This repository represents frontend part of a project that was intended as an en
 
 # Preview
 
-![preview.gif](https://github.com/kat-wasik/envelope-budgeting-app-frontend/blob/src/assets/preview.gif)
+![preview.gif](https://github.com/kat-wasik/envelope-budgeting-app-frontend/blob/main/src/assets/preview.gif)
 
